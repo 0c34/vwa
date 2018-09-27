@@ -1,0 +1,9 @@
+{
+    "user": "vwa",
+    "password": "vwa321",
+    "dbname": "vwa",
+    "sqlhost": "192.168.56.102",
+    "sqlport": "5432",
+    "webserver": "http://localhost",
+    "webport": "8082"
+}
