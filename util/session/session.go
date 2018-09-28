@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"net/http"
 	"github.com/gorilla/sessions"
-	//"vwa/util"
 )
 
 type Session struct{}

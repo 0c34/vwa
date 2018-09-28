@@ -31,7 +31,6 @@ func LoadConfig()*Config{
 
 func init(){
 	Cfg = LoadConfig()
-	fmt.Println(LoadConfig())
 	url := fmt.Sprintf("%s:%s/",Cfg.Webserver,Cfg.Webport)
 	Fullurl = url
 }

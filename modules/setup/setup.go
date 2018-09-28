@@ -4,7 +4,7 @@ import(
 	//"log"
 	//"vwa/util/database"
 	"net/http"
-	"vwa/helper/middleware"
+	"github.com/vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 

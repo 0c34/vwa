@@ -5,11 +5,10 @@ import(
 	"fmt"
 	"log"
 	"net/http"
-//	"html/template"
-	"vwa/util/render"
-	"vwa/util/session"
-	"vwa/util/database"
-	"vwa/helper/middleware"
+	"github.com/vwa/util/render"
+	"github.com/vwa/util/session"
+	"github.com/vwa/util/database"
+	"github.com/vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 
