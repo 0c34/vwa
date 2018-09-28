@@ -1,20 +1,20 @@
 package user
 
 import (
-	"fmt"
 
 	"log"
+	"fmt"
 	"net/http"
 	"strconv"
 	"crypto/md5"
 	"database/sql"
 	"encoding/hex"
 
-	"github.com/vwa/util/render"
-	"github.com/vwa/helper/httphelper"
-	"github.com/vwa/util/session"
-	"github.com/vwa/util/database"
-	"github.com/vwa/helper/middleware"
+	"vwa/util/render"
+	"vwa/helper/httphelper"
+	"vwa/util/session"
+	"vwa/util/database"
+	"vwa/helper/middleware"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -50,7 +50,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 			res.Body = "Empty email or Password"
 			render.JSONRender(w, res)
 		}else{
-			fmt.Println(loginAction(w,r,ps))
+			fmt.Println(loginAction(w, r, ps))
 			if loginAction(w, r, ps) {
 				res := Resp{}
 				res.Success = true
@@ -85,6 +85,7 @@ func loginAction(w http.ResponseWriter, r *http.Request, _ httprouter.Params) bo
 		sessionData["msisdn"] = uData.msisdn
 
 		s.SetSession(w, r, sessionData)
+		//util.SetCookie(w, "Uid", strconv.Itoa(uData.id)) //save user_id to cookie
 		log.Println("Login Success")
 
 		return true

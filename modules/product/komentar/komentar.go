@@ -5,10 +5,11 @@ import(
 	"fmt"
 	"log"
 	"net/http"
-	"github.com/vwa/util/render"
-	"github.com/vwa/util/session"
-	"github.com/vwa/util/database"
-	"github.com/vwa/helper/middleware"
+//	"html/template"
+	"vwa/util/render"
+	"vwa/util/session"
+	"vwa/util/database"
+	"vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -59,7 +60,11 @@ func VerifyUserHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	uid := s.GetSession(r, "id")
 
 	if !s.IsLoggedIn(r){
-		html := `<div class="alert alert-warning">Login untuk mengirim kometar</div>`
+		html := `<div class="row">
+                  <div class="col-lg-10">
+                  <div class="alert alert-warning">Silahkan <strong>login</strong> untuk mengirim kometar</div>
+                  </div>
+                  </div>`
 		resp := Resp{}
 		resp.Body = html
 		render.JSONRender(w,resp)
@@ -101,6 +106,7 @@ func VerifyUserHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 func SaveKomentarHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 	
 	isiKomentar := r.FormValue("isikomentar")
+	//filter := template.HTMLEscapeString(isiKomentar)
 	uid := r.FormValue("uid")
 
 	ok := SaveKomentar(uid, isiKomentar)

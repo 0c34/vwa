@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"github.com/gorilla/sessions"
-
+	//"vwa/util"
 )
 
 type Session struct{}
@@ -16,7 +16,7 @@ func New() *Session {
 	return &Session{}
 }
 
-var store = sessions.NewCookieStore([]byte("vwa321"))
+var store = sessions.NewCookieStore([]byte("G0Vw666"))
 
 func (Session *Session) SetSession(w http.ResponseWriter, r *http.Request, data map[string]string) {
 	session, err := store.Get(r, "vwa")

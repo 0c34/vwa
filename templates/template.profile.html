@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #40B649">
       <div class="container">
-        <a class="navbar-brand" href="#">TokoDummy</a>
+        <a class="navbar-brand" href="{{.weburl}}">Tokophobia</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,13 +37,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profile">Profile</a>
+              <a class="nav-link" href="#">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Shop</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{.weburl}}/logout">Logout</a>
+            <li class="nav-item" id="logout_atas">
             </li>
           </ul>
         </div>
@@ -62,14 +61,14 @@
 
           <!-- Single Comment -->
           <div class="card my-8">
-            <h5 class="card-header">Kategori</h5>
-              <div class="card-body">
+            <h5 class="card-header">Profile Pribadi</h5>
+              <div class="card-body" id="halaman_utama">
                 <div class="row">
                   <div class="col-lg-10">
                      <div>
                        <form role="form" id="profileform" method="post">
                           <div class="form-group row">
-                              <label for="name" class="col-4 col-form-label">Name :</label>
+                              <label for="name" class="col-4 col-form-label">Nama :</label>
                               <div class="col-8">
                                   <input class="form-control" type="hidden" name="uid" value="{{.uid}}" id="uid">
                                 <input class="form-control" name="name" type="text" value="{{.name}}" id="name">
@@ -95,6 +94,28 @@
                             </div>
                           </div>
                      </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-lg-10">
+                    <div>
+                       <form role="form" id="passwordform" method="post">
+                        <div class="form-group row">
+                              <label for="name" class="col-4 col-form-label">Password Baru :</label>
+                              <div class="col-8">
+                                  <input class="form-control" type="hidden" name="uid" value="{{.uid}}" id="uid">
+                                <input class="form-control" name="password_baru" type="password" value="" id="password_baru">
+                              </div>
+                          </div>
+                       </form>
+                       <div class="form-group row">
+                        <label for="name" class="col-4 col-form-label"></label>
+                        <div class="col-8">
+                            <button type="submit" class="btn btn-success" id="updatepassword">Ganti Password</button>
+                          </div>
+                        </div>
+                    </div>
                   </div>
                 </div>
                 <div id="message"></div> 
@@ -172,6 +193,21 @@
       $(document).ready(function() {
         var userenp = "/profile"
         var html = ""
+
+      var baseurl = "{{.weburl}}/verify_user"
+        $.get(baseurl, function(data){
+          var hasil = data[0].body;
+          if(hasil !== ""){
+            $("#halaman_utama").html(hasil);
+            console.log(hasil);
+          }
+        })
+
+        var baseurl_main = "{{.weburl}}/verify"
+          $.get(baseurl_main, function(data){
+              $("#logout_atas").html(data[0].atas)
+          })
+
         $("#updateprofile").on('click', function(){
           data = $("#profileform").serialize()
           $.post(userenp, data)
@@ -182,6 +218,22 @@
               html = "<div class=\"alert alert-danger\">"+response[0].message+"</div>"
             }
             $("#message").html(html)
+          })
+          $("#message").delay(2000).fadeOut();
+        })
+
+        var api_pass  = "/password"
+        var html_pass = ""
+        $("#updatepassword").on('click', function(){
+          data_pass = $("#passwordform").serialize()
+          $.post(api_pass, data_pass)
+          .done(function(response){
+            if(response[0].success == "1"){
+              html_pass = "<div class=\"alert alert-success\">"+response[0].message+"</div>"
+            }else{
+              html_pass = "<div class=\"alert alert-danger\">"+response[0].message+"</div>"
+            }
+            $("#message").html(html_pass)
           })
           $("#message").delay(2000).fadeOut();
         })
