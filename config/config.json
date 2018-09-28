@@ -1,9 +1,9 @@
 {
-    "user": "vwa",
-    "password": "vwa321",
+    "user": "postgres",
+    "password": "masukaja",
     "dbname": "vwa",
-    "sqlhost": "192.168.56.102",
+    "sqlhost": "localhost",
     "sqlport": "5432",
-    "webserver": "http://localhost",
+    "webserver": "http://vwa.tokopedia.toped",
     "webport": "8082"
 }

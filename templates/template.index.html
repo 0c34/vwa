@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TokoDummy</title>
+    <title>Tokopedia</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{.weburl}}/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -19,13 +19,12 @@
     <link href="{{.weburl}}/assets/css/blog-post.css" rel="stylesheet">
     <script src="{{.weburl}}/assets/js/jquery.min.js"></script>
   </head>
-
   <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #40B649">
       <div class="container">
-        <a class="navbar-brand" href="#">TokoDummy</a>
+        <a class="navbar-brand" href="{{.weburl}}">Tokophobia</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,8 +41,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Shop</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{.weburl}}/logout">Logout</a>
+            <li class="nav-item" id="logout_atas">
+              
             </li>
           </ul>
         </div>
@@ -170,7 +169,9 @@
           $.get(baseurl, function(data){
               $("#loginverify").empty()
               $("#loginverify").html(data[0].body)
+              $("#logout_atas").html(data[0].atas)
               console.log(data[0].body)
+              console.log(data[0].atas)
           }
           )
           var baseurl = "{{.weburl}}/verifyuser"

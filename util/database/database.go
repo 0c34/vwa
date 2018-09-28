@@ -4,7 +4,7 @@ import(
 	"fmt"
 	//"log"
 	"database/sql"
-	"github.com/vwa/util"
+	"vwa/util"
 	_ "github.com/lib/pq"
 )
 
