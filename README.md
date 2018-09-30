@@ -3,7 +3,6 @@ VWA is a web application developed to help the pentester and programmers to lear
 
 #### How To Install VWA
 
-
 #### Installing golang
 If you didn't have golang installed on your system. first, install it using automation script from https://github.com/canha/golang-tools-install-script.
 
