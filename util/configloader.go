@@ -14,7 +14,6 @@ type Config struct{
 	Sqlport string `json:"sqlport"`
 	Webserver string `json:"webserver"`
 	Webport string `json:"webport"`
-	Sessionkey string `json:"sessionkey"`
 }
 
 var Cfg *Config

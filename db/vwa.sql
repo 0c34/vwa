@@ -118,8 +118,8 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 COPY komentar (id_komentar, isi_komentar, id_user) FROM stdin;
-1	ready gan?? ini ROMnya china??	2
-2	ready, bisa gosend hari ini	3
+1	barang ready gan?	2
+2	bisa gosend hari ini gan?	1
 \.
 
 
@@ -135,9 +135,9 @@ SELECT pg_catalog.setval('komentar_id_komentar_seq', 8, true);
 --
 
 COPY users (id, username, password, email, phone_number) FROM stdin;
-2	eko susilo	a119e534072584a0ea88cdea4664aecd	pakeko@gmail.com	08564771185
-3	rahmat	5fe43373c2db4deb851f3290080621f5	rahmat01@gmail.com	082342844322
-1	andii	6b7330782b2feb4924020cc4a57782a9	andi03@gmail.com	08882228854
+2	eko	ae2b1fca515949e5d54fb22b8ed95575	eko@gmail.com	08564771185
+3	Attacker	ae2b1fca515949e5d54fb22b8ed95575	attacker@gmail.com	082342844322
+1	Andi	ae2b1fca515949e5d54fb22b8ed95575	andi@gmail.com	08882228854
 \.
 
 

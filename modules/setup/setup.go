@@ -1,11 +1,8 @@
 package setup
 
 import(
-	//"log"
-	//"vwa/util/database"
 	"net/http"
-	"github.com/vwa/helper/middleware"
-	"github.com/vwa/util/render"
+	"vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -24,5 +21,4 @@ func (self *Self) SetRouter(r *httprouter.Router) {
 }
 
 func SetupHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-
 }

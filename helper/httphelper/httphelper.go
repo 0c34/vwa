@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/vwa/util"
+	"vwa/util"
 )
 
 func Redirect(w http.ResponseWriter, r *http.Request, location string, code int){

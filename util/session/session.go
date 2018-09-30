@@ -1,13 +1,10 @@
 package session
 
 import (
-
-
 	"log"
 	"fmt"
 	"net/http"
 	"github.com/gorilla/sessions"
-
 )
 
 type Session struct{}
@@ -16,7 +13,7 @@ func New() *Session {
 	return &Session{}
 }
 
-var store = sessions.NewCookieStore([]byte("vwa321"))
+var store = sessions.NewCookieStore([]byte("G0Vw1337"))
 
 func (Session *Session) SetSession(w http.ResponseWriter, r *http.Request, data map[string]string) {
 	session, err := store.Get(r, "vwa")
@@ -28,18 +25,17 @@ func (Session *Session) SetSession(w http.ResponseWriter, r *http.Request, data 
 	session.Options = &sessions.Options{
 		Path:     "/",
 		MaxAge:   3600,
-		HttpOnly: false, //set to false for xss :) 
+		HttpOnly: false,
 	}
 
 	session.Values["vwa_session"] = true
 
-	//create new session to store on server side
 	if data != nil {
 		for key, value := range data {
 			session.Values[key] = value
 		}
 	}
-	err = session.Save(r, w) //safe session and send it to client as cookie
+	err = session.Save(r, w)
 	
 		if err != nil {
 			log.Println(err.Error())
@@ -65,12 +61,12 @@ func (Session *Session) DeleteSession(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	session.Options = &sessions.Options{
-		MaxAge:   -1,
-		HttpOnly: false, //set to false for xss :) 
+		MaxAge:   3600,
+		HttpOnly: false,
 	}
 
 	session.Values["vwa_session"] = false
-	err = session.Save(r, w) //safe session and send it to client as cookie
+	err = session.Save(r, w)
 
 	if err != nil {
 		log.Println(err.Error())

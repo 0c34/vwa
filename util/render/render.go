@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"encoding/json"
 	"html/template"
-	"github.com/vwa/util/session"
+	"vwa/util/session"
 )
 
 func HTMLRender(w http.ResponseWriter, r *http.Request, name string, data map[string]interface{}) {
 
 	s := session.New()
-	sid := s.GetSession(r, "id")//make uid available to all page
+	sid := s.GetSession(r, "id")
 	data["uid"] = sid
 
 	template := template.Must(template.ParseGlob("templates/*"))

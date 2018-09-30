@@ -1,8 +1,8 @@
 {
-    "user": "vwa",
-    "password": "vwa321",
+    "user": "postgres",
+    "password": "helloworld",
     "dbname": "vwa",
-    "sqlhost": "192.168.56.102",
+    "sqlhost": "localhost",
     "sqlport": "5432",
     "webserver": "http://localhost",
     "webport": "8082"
