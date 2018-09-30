@@ -3,7 +3,7 @@ package database
 import(
 	"fmt"
 	"database/sql"
-	"vwa/util"
+	"github.com/vwa/util"
 	_ "github.com/lib/pq"
 )
 

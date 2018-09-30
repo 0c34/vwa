@@ -10,11 +10,11 @@ import (
 	"database/sql"
 	"encoding/hex"
 
-	"vwa/util/render"
-	"vwa/helper/httphelper"
-	"vwa/util/session"
-	"vwa/util/database"
-	"vwa/helper/middleware"
+	"github.com/vwa/util/render"
+	"github.com/vwa/helper/httphelper"
+	"github.com/vwa/util/session"
+	"github.com/vwa/util/database"
+	"github.com/vwa/helper/middleware"
 
 	"github.com/julienschmidt/httprouter"
 )
