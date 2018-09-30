@@ -5,10 +5,10 @@ import (
 	"log"
 
 	"net/http"
-	"vwa/util"
-	"vwa/util/render"
-	"vwa/util/session"
-	"vwa/util/database"
+	"github.com/vwa/util"
+	"github.com/vwa/util/render"
+	"github.com/vwa/util/session"
+	"github.com/vwa/util/database"
 
 	"github.com/julienschmidt/httprouter"
 )

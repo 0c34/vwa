@@ -2,7 +2,7 @@ package setup
 
 import(
 	"net/http"
-	"vwa/helper/middleware"
+	"github.com/vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 
