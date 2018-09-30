@@ -5,10 +5,10 @@ import (
 	"log"
 
 	"net/http"
-	"github.com/vwa/util"
-	"github.com/vwa/util/render"
-	"github.com/vwa/util/session"
-	"github.com/vwa/util/database"
+	"vwa/util"
+	"vwa/util/render"
+	"vwa/util/session"
+	"vwa/util/database"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -16,6 +16,7 @@ import (
 type Response struct{
 	Body string `json:"body"`
 	Atas string `json:"atas"`
+	Status bool `json:"status"`
 }
 func LoginVerify(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 	s := session.New()
@@ -39,6 +40,7 @@ func LoginVerify(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 		logout_atas := fmt.Sprintf(`<a class="nav-link" href="logout">Logout</a>`)
 		res.Body =  profile
 		res.Atas =  logout_atas
+		res.Status =  true
 		render.JSONRender(w, res)
 
 	}else{
@@ -88,6 +90,7 @@ func LoginVerify(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 		res := Response{}
 		res.Body = loginForm
 		res.Atas = logoutTop
+		res.Status = false
 		render.JSONRender(w, res)
 	}
 }

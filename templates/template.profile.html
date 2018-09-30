@@ -10,16 +10,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>{{.title}}</title>
+    <title>{{.title}} - Tøkōpëdiâ</title>
 
+    <link rel="shortcut icon"href="{{.weburl}}/assets/imgs/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="{{.weburl}}/assets/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{{.weburl}}/assets/css/blog-post.css" rel="stylesheet">
     <script src="{{.weburl}}/assets/js/jquery.min.js"></script>
   </head>
-
   <body>
 
     <!-- Navigation -->
@@ -31,13 +30,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/index">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Profile</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Shop</a>
@@ -57,12 +56,13 @@
         <!-- Post Content Column -->
         <div class="col-lg-8">
 
-          <hr>
+          <br>
 
           <!-- Single Comment -->
           <div class="card my-8">
             <h5 class="card-header">Profile Pribadi</h5>
               <div class="card-body" id="halaman_utama">
+                <div id="message"></div> 
                 <div class="row">
                   <div class="col-lg-10">
                      <div>
@@ -70,7 +70,6 @@
                           <div class="form-group row">
                               <label for="name" class="col-4 col-form-label">Nama :</label>
                               <div class="col-8">
-                                  <input class="form-control" type="hidden" name="uid" value="{{.uid}}" id="uid">
                                 <input class="form-control" name="name" type="text" value="{{.name}}" id="name">
                               </div>
                             </div>
@@ -90,7 +89,7 @@
                        <div class="form-group row">
                           <label for="name" class="col-4 col-form-label"></label>
                           <div class="col-8">
-                              <button type="submit" class="btn btn-success" id="updateprofile">Update</button>
+                              <button type="submit" class="btn btn-success" id="updateprofile">Update Profile</button>
                             </div>
                           </div>
                      </div>
@@ -124,7 +123,6 @@
         </div>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
-          <hr>
           <!-- Categories Widget -->
           <div class="card my-4">
             <h5 class="card-header">Kategori</h5>
@@ -159,7 +157,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -169,10 +166,10 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <!-- <footer class="py-5 bg-dark">
+    <!--<footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Tokopedia IT Security Pentest 2018</p>      </div>
-    </footer> -->
+        <p class="m-0 text-center text-white">Copyright &copy; Tøkōpëdiâ IT Security Pentest 2018</p>      </div>
+    </footer>-->
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{.weburl}}/assets/js/bootstrap.bundle.min.js"></script>
@@ -217,9 +214,33 @@
             }else{
               html = "<div class=\"alert alert-danger\">"+response[0].message+"</div>"
             }
-            $("#message").html(html)
+            $("#message").html(html);
+            $("#message").slideDown();
+            $("#message").delay(2000).slideUp();
           })
-          $("#message").delay(2000).fadeOut();
+        })
+
+        var api_pass  = "/password"
+        var html_pass = ""
+        $("#updatepassword").on('click', function(){
+          val_pass  = $("#password_baru").val()
+          data_pass = $("#passwordform").serialize()
+          if(val_pass == ""){
+            html_pass = "<div class=\"alert alert-danger\">Password baru belum diisi..</div>"
+          }else{
+            $.post(api_pass, data_pass)
+            .done(function(response){
+              if(response[0].success == "1"){
+                html_pass = "<div class=\"alert alert-success\">"+response[0].message+"</div>"
+              }else{
+                html_pass = "<div class=\"alert alert-danger\">"+response[0].message+"</div>"
+              }
+            })
+          }
+          $("#message").html(html_pass);
+          $("#message").slideDown();
+          $("#message").delay(2000).slideUp();
+          
         })
 
         var api_pass  = "/password"

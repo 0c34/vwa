@@ -1,8 +1,6 @@
 package setup
 
 import(
-	//"log"
-	//"vwa/util/database"
 	"net/http"
 	"github.com/vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"

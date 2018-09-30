@@ -5,10 +5,11 @@ import(
 	"fmt"
 	"log"
 	"net/http"
-	"github.com/vwa/util/render"
-	"github.com/vwa/util/session"
-	"github.com/vwa/util/database"
-	"github.com/vwa/helper/middleware"
+//	"html/template"
+	"vwa/util/render"
+	"vwa/util/session"
+	"vwa/util/database"
+	"vwa/helper/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -69,7 +70,7 @@ func VerifyUserHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 		render.JSONRender(w,resp)
 	}else{
 		html := fmt.Sprintf(`<div class="card my-4">
-				<h5 class="card-header">Leave a Comment:</h5>
+				<h5 class="card-header">Tinggalkan Komentar :</h5>
 				<div class="card-body">
 				<div id="kmsg" class="alert alert-danger" style="display:none"></div>
 				<form id="formkomentar" action="#" method="post">
@@ -78,7 +79,7 @@ func VerifyUserHandler(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 					<input type="hidden" name="uid" value="%s">
 					</div>
 				</form>
-				<button type="submit" id="savekomentar" class="btn btn-primary">Submit</button>
+				<button type="submit" id="savekomentar" class="btn btn-primary">Kirim Komentar</button>
 				</div>
 			</div>
 			<script>

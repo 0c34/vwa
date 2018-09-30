@@ -12,7 +12,6 @@ import (
 	"github.com/vwa/util/session"
 	"github.com/vwa/util/database"
 	"github.com/vwa/helper/middleware"
-
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -24,9 +23,8 @@ func New() *Self {
 }
 
 func (self *Self) SetRouter(r *httprouter.Router) {
-	/* register all router */
 
-	mw := middleware.New() //implement middleware
+	mw := middleware.New()
 
 	r.GET("/verify_user", mw.LoggingMiddleware(mw.CapturePanic(Verify_User)))
 	r.GET("/user", mw.LoggingMiddleware(mw.CapturePanic(UserHandler)))
@@ -55,8 +53,10 @@ type Jsonresp struct{
 
 func UserHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
 	
-	data := make(map[string]interface{})
-	data["title"] = "User"
+	data 	:= make(map[string]interface{})
+	nama 	:= r.URL.Query()["user"][0]
+	data["title"] 		= "User Profile"
+	data["nama_user"] 	= nama
 
 	render.HTMLRender(w,r, "template.user", data)
 
@@ -109,17 +109,17 @@ func ProfileHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 
 }
 
+
 func UpdateProfileHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params){
 	sess := session.New()
 	resp := Jsonresp{}
 
 	if sess.IsLoggedIn(r){
 		if r.Method == "POST"{
-			uid := r.FormValue("uid")
-			name := r.FormValue("name")
-			email := r.FormValue("email")
-			msisdn := r.FormValue("msisdn")
-			
+			uid 	:= sess.GetSession(r,"id")
+			name 	:= r.FormValue("name")
+			email 	:= r.FormValue("email")
+			msisdn 	:= r.FormValue("msisdn")
 			ok := updateProfile(uid, name, email, msisdn)
 			if !ok{
 				resp.Success = "0"
@@ -144,9 +144,6 @@ func UpdatePasswordHandler(w http.ResponseWriter, r *http.Request, _ httprouter.
 		if r.Method == "POST"{
 			uid 			:= r.FormValue("uid")
 			password_baru 	:= r.FormValue("password_baru")
-
-			// fmt.Println(uid)
-			// fmt.Println(password_baru)
 			
 			ok := updatePassword(uid, password_baru)
 			if !ok{

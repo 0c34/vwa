@@ -10,11 +10,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tokopedia</title>
+    <title>{{.title}} - Tøkōpëdiâ</title>
 
+    <link rel="shortcut icon"href="{{.weburl}}/assets/imgs/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="{{.weburl}}/assets/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{{.weburl}}/assets/css/blog-post.css" rel="stylesheet">
     <script src="{{.weburl}}/assets/js/jquery.min.js"></script>
@@ -97,7 +97,7 @@
 
           <!-- Search Widget -->
           <div class="card my-4">
-            <h5 class="card-header">Login</h5>
+            <h5 class="card-header" id="header_login">Login</h5>
             <div class="card-body">
                 <div id="loginverify"></div>              
             </div>
@@ -138,14 +138,6 @@
             </div>
           </div>
 
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -157,7 +149,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Tokopedia IT Security Pentest 2018</p>      </div>
+        <p class="m-0 text-center text-white">Copyright &copy; Tøkōpëdiâ IT Security Pentest 2018</p>      </div>
       <!-- /.container -->
     </footer>
 
@@ -170,6 +162,11 @@
               $("#loginverify").empty()
               $("#loginverify").html(data[0].body)
               $("#logout_atas").html(data[0].atas)
+              if(data[0].status){
+                $("#header_login").text("Profile")
+              }else{
+                $("#header_login").text("Login")
+              }
               console.log(data[0].body)
               console.log(data[0].atas)
           }
@@ -177,7 +174,6 @@
           var baseurl = "{{.weburl}}/verifyuser"
           $.get(baseurl, function(data){
               $("#postkomentar").html(data[0].body)
-              console.log(data[0].body)
           }
           )
           var fetchkomentarurl = "{{.weburl}}/fetchkomentar"
@@ -189,7 +185,7 @@
                 html += "<div class=\"media mb-4\">"
                 html += "<img class=\"d-flex mr-3 rounded-circle\" height=\"50px\" widht=\"50px\" src=\"{{.weburl}}/assets/imgs/profil.jpg\">"
                 html += "<div class=\"media-body\">"
-                html += "<h5 class=\"mt-0\"><a style=\"color:black\" href=\"/user?idu="+v.iduser+"\">"+v.username+"</a></h5>"
+                html += "<h5 class=\"mt-0\"><a style=\"color:black\" href=\"/user?idu="+v.iduser+"&user="+v.username+"\">"+v.username+"</a></h5>"
                 html += "<p>"+v.isikomentar+"</p>"
                 html += "</div></div></div><hr>"  
               })
