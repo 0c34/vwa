@@ -8,7 +8,23 @@ If you didn't have golang installed on your system. first, install it using auto
 
 Follow the instruction which is provided by the author and install golang depending on your Operating System Architecture.
 
-If successfully installed you would have directory 'go' in your home directory. the go directory has three subdirectory (bin, pgk, src). switch to src directory then clone govwa repository. 
+If successfully installed you would have directory 'go' in your home directory. the go directory has three subdirectory (bin, pgk, src). switch to src directory then clone vwa repository. 
+
+#### Installing Postgres & Restore Database
+Install Postgres
+```
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
+Restore DB
+```
+passwd postgres //Change Password from user postgres
+su postgres //Login to user postgres
+createdb [database_name] //create database
+psql [database_name] < db/vwa.sql
+psql -d [database_name] //connect to that database, for check
+\dt //To see table
+```
 
 #### Installing VWA
 ```
