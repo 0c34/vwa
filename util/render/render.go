@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"encoding/json"
 	"html/template"
-	"github.com/vwa/util/session"
+	"vwa/util/session"
 )
 
 func HTMLRender(w http.ResponseWriter, r *http.Request, name string, data map[string]interface{}) {
