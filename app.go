@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"github.com/vwa/util"
-	"github.com/vwa/util/render"
-	"github.com/vwa/helper/middleware"
-	"github.com/vwa/modules/user"
-	"github.com/vwa/modules/user/profile"
-	"github.com/vwa/modules/product/komentar"
+	"vwa/util"
+	"vwa/util/render"
+	"vwa/helper/middleware"
+	"vwa/modules/user"
+	"vwa/modules/user/profile"
+	"vwa/modules/product/komentar"
 
 	"github.com/julienschmidt/httprouter"
 )
